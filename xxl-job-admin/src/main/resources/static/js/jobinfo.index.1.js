@@ -414,14 +414,16 @@ $(function() {
 
         var id = $(this).parent('p').attr("id");
         var row = tableData['key'+id];
-
 		// base data
 		$("#updateModal .form input[name='id']").val( row.id );
 		$('#updateModal .form select[name=jobGroup] option[value='+ row.jobGroup +']').prop('selected', true);
 		$("#updateModal .form input[name='jobDesc']").val( row.jobDesc );
 		$("#updateModal .form input[name='jobCron']").val( row.jobCron );
 		$("#updateModal .form input[name='author']").val( row.author );
-		$("#updateModal .form input[name='alarmEmail']").val( row.alarmEmail );
+		// $("#updateModal .form input[name='alarmEmail']").val( row.alarmEmail );
+		if(row.alarmEmail != null && row.alarmEmail !== ''){
+			$('#updateModal .form select[name=alarmEmail] option[value='+ row.alarmEmail +']').prop('selected', true);
+		}
 		$("#updateModal .form input[name='executorTimeout']").val( row.executorTimeout );
         $("#updateModal .form input[name='executorFailRetryCount']").val( row.executorFailRetryCount );
 		$('#updateModal .form select[name=executorRouteStrategy] option[value='+ row.executorRouteStrategy +']').prop('selected', true);

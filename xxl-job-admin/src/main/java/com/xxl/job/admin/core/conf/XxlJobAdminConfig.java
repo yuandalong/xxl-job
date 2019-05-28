@@ -8,7 +8,6 @@ import com.xxl.job.core.biz.AdminBiz;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
 
 import javax.annotation.Resource;
 
@@ -43,9 +42,8 @@ public class XxlJobAdminConfig implements InitializingBean{
     @Value("${xxl.job.accessToken}")
     private String accessToken;
 
-    @Value("${spring.mail.username}")
-    private String emailUserName;
-
+    @Value("${dingtalk.alert.url}")
+    private String dingtalkAlertUrl;
     // dao, service
 
     @Resource
@@ -58,8 +56,6 @@ public class XxlJobAdminConfig implements InitializingBean{
     private XxlJobGroupDao xxlJobGroupDao;
     @Resource
     private AdminBiz adminBiz;
-    @Resource
-    private JavaMailSender mailSender;
 
     public String getLoginUsername() {
         return loginUsername;
@@ -75,10 +71,6 @@ public class XxlJobAdminConfig implements InitializingBean{
 
     public String getAccessToken() {
         return accessToken;
-    }
-
-    public String getEmailUserName() {
-        return emailUserName;
     }
 
     public XxlJobLogDao getXxlJobLogDao() {
@@ -101,8 +93,7 @@ public class XxlJobAdminConfig implements InitializingBean{
         return adminBiz;
     }
 
-    public JavaMailSender getMailSender() {
-        return mailSender;
+    public String getDingtalkAlertUrl() {
+        return dingtalkAlertUrl;
     }
-
 }
